@@ -2,7 +2,7 @@
 
 - If you have a Linux installation and you feel like starting from scratch, you can go straight to Section 3. It should work with minimal changes if you are using a Mac.
 
-- However, if you are using Windows, you can choose between using a Docker container (Section 1), assuming you have already successfully installed Docker, or using an AWS EC2 Instance (Section 2), assuming you already have an AWS account.
+- However, if you are using Windows, it is better to choose between using a Docker container (Section 1), assuming you have already successfully installed Docker, or using an AWS EC2 Instance (Section 2), assuming you already have an AWS account.
 
 ## Using Docker 
 
@@ -12,8 +12,14 @@ git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```
 
 ### 1.2 Run the container from the image at DockerHub (dvgodoy/dsr-spark-appliedml), naming it dsr-spark-appliedml, making your local folder with the repository and all its notebooks accessible inside the container in the folder /home/jovyan/work/DSR
+- If you have a Linux installation, it is simple as that:
 ```bash
 docker run -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
+```
+- But if you are using Windows, on the Docker Quickstart Terminal, you need to:
+```bash
+docker-machine ssh default
+docker run -v /c/path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
 ```
 - It will start a MySQL database server and the Jupyter Notebook. You should see a message like:
 ```bash
