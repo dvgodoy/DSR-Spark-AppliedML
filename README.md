@@ -1,15 +1,15 @@
 # Data Science Retreat - Applied Machine Learning with Apache Spark
 
-- If you have a Linux installation and you feel like starting from scratch, you can go straight to Section 3. It should work with minimal changes if you are using a Mac
+- If you have a Linux installation and you feel like starting from scratch, you can go straight to Section 3. It should work with minimal changes if you are using a Mac.
 
 - However, if you are using Windows, you can choose between using a Docker container (Section 1), assuming you have already successfully installed Docker, or using an AWS EC2 Instance (Section 2), assuming you already have an AWS account.
 
 ## Using Docker 
 
-### 1.0 Clone the Repository
+### 1.1 Clone the Repository
 - git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 
-### 2.0 Run the container from the image at DockerHub (dvgodoy/dsr-spark-appliedml), naming it dsr-spark-appliedml, making your local folder with the repository and all its notebooks accessible inside the container in the folder /home/jovyan/work/DSR
+### 1.2 Run the container from the image at DockerHub (dvgodoy/dsr-spark-appliedml), naming it dsr-spark-appliedml, making your local folder with the repository and all its notebooks accessible inside the container in the folder /home/jovyan/work/DSR
 ```bash
 docker run -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
 ```
@@ -22,7 +22,7 @@ docker run -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spar
 - After copying the URL in your browser (please note token will be different from the example!), you should see a DSR folder containing the contents of the repository
 - This image is built on top of of [Docker stacks' Pyspark Notebook](https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
 
-### 3.0 If you want to access the container:
+### 1.3 If you want to access the container:
 ```bash
 docker exec -it dsr-spark-appliedml bash
 ```
