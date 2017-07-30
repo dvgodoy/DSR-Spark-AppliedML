@@ -40,7 +40,7 @@ docker exec -it dsr-spark-appliedml bash
 
 ### 2.1 Click on Launch Instance
 
-### 2.2 Look for the AMI ID ami-3bb56c5b in Community AMIs
+### 2.2 Look for the AMI ID ami-7aa74302 in Community AMIs (Oregon region)
 
 ### 2.3 When asked for, create a new key pair - download it and keep it safe!
 
