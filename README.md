@@ -65,10 +65,10 @@ sudo apt-get install git
 git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```
 
-### 2.8 Run PySpark
+### 2.8 Run Jupyter
 ```bash
 cd DSR-SparkAppliedML
-pyspark
+jupyter notebook
 ```
 
 ## Manual Installation
@@ -81,14 +81,13 @@ sudo apt-get install oracle-java8-installer
 
 ### 3.2 You should have Anaconda installed, otherwise:
 ```bash
-wget https://repo.continuum.io/archive/Anaconda2-4.2.0-Linux-x86_64.sh
-bash Anaconda2-4.2.0-Linux-x86_64.sh
+wget  https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
+bash Anaconda3-4.2.0-Linux-x86_64.sh
 source ~/.bashrc
 ```
 
-### 3.3 You should have PY4J and SPARK-SKLEARN packages installed, otherwise:
+### 3.3 You should have SPARK-SKLEARN packages installed, otherwise:
 ```bash
-pip install py4j
 pip install spark-sklearn
 ```
 
@@ -105,9 +104,9 @@ tar -xvf mysql-connector-java-5.1.39.tar.gz
 
 ### 3.6 You should have Spark 2.0 installed, otherwise:
 ```bash
-wget http://d3kbcqa49mib13.cloudfront.net/spark-2.0.0-bin-hadoop2.7.tgz
-tar -xvf spark-2.0.0-bin-hadoop2.7.tgz
-mv spark-2.0.0-bin-hadoop2.7 spark
+wget  https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
+tar -xvf spark-2.2.0-bin-hadoop2.7.tgz
+ln -s tar -xvf spark-2.2.0-bin-hadoop2.7 spark
 ```
 
 ### 3.7 If you are performing the installation on an EC2 instance, you should follow these steps:
@@ -136,7 +135,7 @@ And paste these lines:
 ```bash
 c = get_config()
 c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.certfile = '/home/ubuntu/certificates/mycert.pem'
+c.NotebookApp.certfile = '/home/ubuntu/certificates/server.pem'
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
@@ -154,7 +153,7 @@ spark.jars.packages    com.databricks:spark-xml_2.11:0.4.0
 spark.jars	         /home/ubuntu/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar
 ```
 
-### 3.9 Environment Variables - you have to add this variables, so you can easily run PySpark as a Jupyter Notebook
+### 3.9 Environment Variables - you have to add this variables
 ```bash
 vi ~/.bashrc
 ```
@@ -163,8 +162,6 @@ And paste these lines lines:
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 export SPARK_HOME="/home/ubuntu/spark"
 export PATH="$SPARK_HOME/bin:$SPARK_HOME:$PATH"
-export PYSPARK_DRIVER_PYTHON="jupyter"
-export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
 ```
 
 ### 3.10 Clone the Repository
@@ -175,5 +172,5 @@ git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ### 3.11 Run PySpark
 ```bash
 cd DSR-Spark-AppliedML
-pyspark
+jupyter notebook
 ```
