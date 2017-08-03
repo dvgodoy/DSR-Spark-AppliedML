@@ -40,7 +40,7 @@ docker exec -it dsr-spark-appliedml bash
 
 ### 2.1 Click on Launch Instance
 
-### 2.2 Look for the AMI ID ami-3bb56c5b in Community AMIs
+### 2.2 Look for the AMI ID ami-7aa74302 in Community AMIs (Oregon region)
 
 ### 2.3 When asked for, create a new key pair - download it and keep it safe!
 
@@ -106,7 +106,7 @@ tar -xvf mysql-connector-java-5.1.39.tar.gz
 ```bash
 wget  https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
 tar -xvf spark-2.2.0-bin-hadoop2.7.tgz
-ln -s tar -xvf spark-2.2.0-bin-hadoop2.7 spark
+ln -s spark-2.2.0-bin-hadoop2.7 spark
 ```
 
 ### 3.7 If you are performing the installation on an EC2 instance, you should follow these steps:
@@ -164,12 +164,17 @@ export SPARK_HOME="/home/ubuntu/spark"
 export PATH="$SPARK_HOME/bin:$SPARK_HOME:$PATH"
 ```
 
-### 3.10 Clone the Repository
+### 3.10 Install PYSPARK
+```bash
+pip install pyspark
+```
+
+### 3.11 Clone the Repository
 ```bash
 git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```
 
-### 3.11 Run PySpark
+### 3.12 Run Jupyter
 ```bash
 cd DSR-Spark-AppliedML
 jupyter notebook
