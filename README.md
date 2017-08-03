@@ -102,7 +102,7 @@ wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.39
 tar -xvf mysql-connector-java-5.1.39.tar.gz 
 ```
 
-### 3.6 You should have Spark 2.0 installed, otherwise:
+### 3.6 You should have Spark 2.2 installed, otherwise:
 ```bash
 wget  https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
 tar -xvf spark-2.2.0-bin-hadoop2.7.tgz
