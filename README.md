@@ -54,18 +54,7 @@ docker exec -it dsr-spark-appliedml bash
 ssh -i mykeypairfile.pem ubuntu@ec2-XX-XX-XX-XX.us-west-2.compute.amazonaws.com
 ```
 
-### 2.6 Update and then install Git
-```bash
-sudo apt-get update
-sudo apt-get install git
-```
-
-### 2.7 Clone the Repository
-```bash
-git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
-```
-
-### 2.8 Run Jupyter
+### 2.6 Run Jupyter
 ```bash
 cd DSR-SparkAppliedML
 jupyter notebook
