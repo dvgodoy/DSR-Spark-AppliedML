@@ -2,7 +2,7 @@
 
 - If you have a Linux installation and you feel like starting from scratch, you can go straight to Section 3. It should work with minimal changes if you are using a Mac.
 
-- However, if you are using Windows, it is better to choose between using a Docker container (Section 1), assuming you have already successfully installed Docker, or using an AWS EC2 Instance (Section 2), assuming you already have an AWS account.
+- However, if you are using Windows, you can choose between using a Docker container (Section 1), assuming you have already successfully installed Docker, or using an AWS EC2 Instance (Section 2), assuming you already have an AWS account.
 
 ## Using Docker 
 
@@ -12,14 +12,8 @@ git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```
 
 ### 1.2 Run the container from the image at DockerHub (dvgodoy/dsr-spark-appliedml), naming it dsr-spark-appliedml, making your local folder with the repository and all its notebooks accessible inside the container in the folder /home/jovyan/work/DSR
-- If you have a Linux installation, it is simple as that:
 ```bash
 docker run -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
-```
-- But if you are using Windows, on the Docker Quickstart Terminal, you need to:
-```bash
-docker-machine ssh default
-docker run -v /c/path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
 ```
 - It will start a MySQL database server and the Jupyter Notebook. You should see a message like:
 ```bash
@@ -28,6 +22,10 @@ docker run -v /c/path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-sp
         http://localhost:8888/?token=13f10e95d96d50eb156ca6e108f39ece7e0a8560eea11c44
 ```
 - After copying the URL in your browser (please note token will be different from the example!), you should see a DSR folder containing the contents of the repository
+- If you're using Windows, you need to find out the IP address associated with your Docker machine (which will result in something like 192.168.99.104), and use this IP address instead of ```localhost```:
+```bash
+docker-machine ip
+```
 - This image is built on top of of [Docker stacks' Pyspark Notebook](https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
 
 ### 1.3 If you want to access the container:
@@ -40,7 +38,7 @@ docker exec -it dsr-spark-appliedml bash
 
 ### 2.1 Click on Launch Instance
 
-### 2.2 Look for the AMI ID ami-7aa74302 in Community AMIs (Oregon region)
+### 2.2 Look for the AMI ID ami-3bb56c5b in Community AMIs
 
 ### 2.3 When asked for, create a new key pair - download it and keep it safe!
 
@@ -54,10 +52,21 @@ docker exec -it dsr-spark-appliedml bash
 ssh -i mykeypairfile.pem ubuntu@ec2-XX-XX-XX-XX.us-west-2.compute.amazonaws.com
 ```
 
-### 2.6 Run Jupyter
+### 2.6 Update and then install Git
+```bash
+sudo apt-get update
+sudo apt-get install git
+```
+
+### 2.7 Clone the Repository
+```bash
+git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
+```
+
+### 2.8 Run PySpark
 ```bash
 cd DSR-SparkAppliedML
-jupyter notebook
+pyspark
 ```
 
 ## Manual Installation
@@ -70,14 +79,20 @@ sudo apt-get install oracle-java8-installer
 
 ### 3.2 You should have Anaconda installed, otherwise:
 ```bash
-wget  https://repo.continuum.io/archive/Anaconda3-4.2.0-Linux-x86_64.sh
-bash Anaconda3-4.2.0-Linux-x86_64.sh
+wget https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh
+bash Anaconda3-5.1.0-Linux-x86_64.sh
 source ~/.bashrc
 ```
 
-### 3.3 You should have SPARK-SKLEARN packages installed, otherwise:
+### 3.3 You should have these packages installed, otherwise:
 ```bash
+pip install py4j
 pip install spark-sklearn
+pip install tensorflow==1.6.0
+pip install keras
+pip install h5py
+pip install nose
+pip install pillow
 ```
 
 ### 3.4 You should have MySQL installed, otherwise:
@@ -91,11 +106,11 @@ wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.39
 tar -xvf mysql-connector-java-5.1.39.tar.gz 
 ```
 
-### 3.6 You should have Spark 2.2 installed, otherwise:
+### 3.6 You should have Spark 2.3.0 installed, otherwise:
 ```bash
-wget  https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
-tar -xvf spark-2.2.0-bin-hadoop2.7.tgz
-ln -s spark-2.2.0-bin-hadoop2.7 spark
+wget http://mirror.yannic-bonenberger.com/apache/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz
+tar -xvf spark-2.3.0-bin-hadoop2.7.tgz
+mv spark-2.3.0-bin-hadoop2.7 spark
 ```
 
 ### 3.7 If you are performing the installation on an EC2 instance, you should follow these steps:
@@ -118,13 +133,13 @@ cat server.crt server.key > server.pem
 ```bash
 jupyter notebook --generate-config
 cd ~/.jupyter
-vi jupyter_notebook_config.py
 ```
-And paste these lines:
+
+Use your favorite text editor to open ```jupyter_notebook_config.py``` and paste these lines:
 ```bash
 c = get_config()
 c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.certfile = '/home/ubuntu/certificates/server.pem'
+c.NotebookApp.certfile = '/home/ubuntu/certificates/mycert.pem'
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
@@ -132,39 +147,34 @@ c.NotebookApp.port = 8888
 
 ### 3.8 Apache Spark - you have to add packages/jars so Spark can handle XML and JDBC sources
 ```bash
-cd /home/ubuntu/spark/conf
+cd <YOUR HOME FOLDER>/spark/conf
 cp spark-defaults.conf.template spark-defaults.conf
-vi spark-defaults.conf
-```
-And paste these lines:
-```bash
-spark.jars.packages    com.databricks:spark-xml_2.11:0.4.0
-spark.jars	         /home/ubuntu/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar
 ```
 
-### 3.9 Environment Variables - you have to add this variables
+Use your favorite text editor to open ```spark-defaults.conf``` and paste these lines:
 ```bash
-vi ~/.bashrc
+spark.jars.packages    com.databricks:spark-xml_2.11:0.4.0,databricks:spark-deep-learning:1.0.0-spark2.3-s_2.11,JohnSnowLabs:spark-nlp:1.5.3
+spark.jars	         <FOLDER WHERE YOU UNZIPPED THE CONNECTOR>/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar
+spark.driver.memory 4g
 ```
-And paste these lines lines:
+
+### 3.9 Environment Variables - you have to add this variables, so you can easily run PySpark as a Jupyter Notebook
+Use your favorite text editor to open ```~/.bashrc``` (or wherever you set your environment variables) and paste these lines lines:
 ```bash
 export JAVA_HOME="/usr/lib/jvm/java-8-oracle"
-export SPARK_HOME="/home/ubuntu/spark"
+export SPARK_HOME="<FOLDER WHERE YOU UNZIPPED SPARK>/spark"
 export PATH="$SPARK_HOME/bin:$SPARK_HOME:$PATH"
+export PYSPARK_DRIVER_PYTHON="jupyter"
+export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
 ```
 
-### 3.10 Install PYSPARK
-```bash
-pip install pyspark
-```
-
-### 3.11 Clone the Repository
+### 3.10 Clone the Repository
 ```bash
 git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```
 
-### 3.12 Run Jupyter
+### 3.11 Run PySpark
 ```bash
 cd DSR-Spark-AppliedML
-jupyter notebook
+pyspark
 ```
