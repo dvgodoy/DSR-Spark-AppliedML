@@ -38,7 +38,7 @@ docker exec -it dsr-spark-appliedml bash
 
 ### 2.1 Click on Launch Instance
 
-### 2.2 Look for the AMI ID ami-3bb56c5b in Community AMIs
+### 2.2 Look for the AMI ID ami-5af48722 in Community AMIs (Oregon)
 
 ### 2.3 When asked for, create a new key pair - download it and keep it safe!
 
@@ -90,9 +90,6 @@ pip install py4j
 pip install spark-sklearn
 pip install tensorflow==1.6.0
 pip install keras
-pip install h5py
-pip install nose
-pip install pillow
 ```
 
 ### 3.4 You should have MySQL installed, otherwise:
@@ -139,7 +136,7 @@ Use your favorite text editor to open ```jupyter_notebook_config.py``` and paste
 ```bash
 c = get_config()
 c.IPKernelApp.pylab = 'inline'
-c.NotebookApp.certfile = '/home/ubuntu/certificates/mycert.pem'
+c.NotebookApp.certfile = '/home/ubuntu/certificates/server.pem'
 c.NotebookApp.ip = '*'
 c.NotebookApp.open_browser = False
 c.NotebookApp.port = 8888
