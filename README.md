@@ -6,6 +6,9 @@
 
 ## Using Docker 
 
+### 0 Install Docker
+If you don't have Docker installed yet, please follow the installation instructions for your OS at [https://docs.docker.com/install/](https://docs.docker.com/install/)
+
 ### 1.1 Clone the Repository
 ```bash
 git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
@@ -24,8 +27,10 @@ docker run -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spar
 - After copying the URL in your browser (please note token will be different from the example!), you should see a DSR folder containing the contents of the repository
 - If you're using Windows, you need to find out the IP address associated with your Docker machine (which will result in something like 192.168.99.104), and use this IP address instead of ```localhost```:
 ```bash
-docker-machine ip
+docker-machine ip default
 ```
+- If you're using Windows, it is likely you'll run into issues regarding the mapping of your local folder to a folder inside the container (that is what the -v option is used for). For some guidance, please refer to this [link](https://rominirani.com/docker-on-windows-mounting-host-directories-d96f3f056a2c). 
+- If the mapping still doesn't work, the remaining option is to clone the repository inside the container itself and download any work made on the notebooks before shutting the container down (once you shut it down, ALL the work is lost, as it will start again from the original image).
 - This image is built on top of of [Docker stacks' Pyspark Notebook](https://github.com/jupyter/docker-stacks/tree/master/pyspark-notebook)
 
 ### 1.3 If you want to access the container:
