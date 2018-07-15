@@ -18,7 +18,7 @@ git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```bash
 docker run -e GRANT_SUDO=yes -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
 ```
-- It will start a MySQL database server and the Jupyter Notebook. You should see a message like:
+- It will start the Jupyter Notebook and you should see a message like:
 ```bash
     Copy/paste this URL into your browser when you connect for the first time,
     to login with a token:
