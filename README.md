@@ -16,7 +16,7 @@ git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 
 ### 1.2 Run the container from the image at DockerHub (dvgodoy/dsr-spark-appliedml), naming it dsr-spark-appliedml, making your local folder with the repository and all its notebooks accessible inside the container in the folder /home/jovyan/work/DSR
 ```bash
-docker run -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
+docker run -e GRANT_SUDO=yes -v /path/to/DSR-Spark-AppliedML:/home/jovyan/work/DSR --name dsr-spark-appliedml -it --rm -p 8888:8888 dvgodoy/dsr-spark-appliedml:latest
 ```
 - It will start a MySQL database server and the Jupyter Notebook. You should see a message like:
 ```bash
@@ -45,12 +45,12 @@ docker exec -it dsr-spark-appliedml bash
 
 ### 2.2 Look for the AMI ID ami-5af48722 in Community AMIs (Oregon)
 
-### 2.3 When asked for, create a new key pair - download it and keep it safe!
-
-### 2.4 When asked for, create a new security group with the following rules:
+### 2.3 When asked for, create a new security group with the following rules:
 - SSH with source Anywhere
 - HTTPS with source Anywhere
 - Custom TCP Rule with Port 8888 and source Anywhere
+
+### 2.4 When asked for, create a new key pair - download it and keep it safe!
 
 ### 2.5 After your instance is ready, you can SSH into it:
 ```bash

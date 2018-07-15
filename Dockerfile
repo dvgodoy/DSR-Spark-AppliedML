@@ -31,4 +31,7 @@ RUN service mysql start && \
 	sleep 5 && \
 	mysql -uroot < create.sql
 
-ENTRYPOINT service mysql start && start-notebook.sh
+# Configure container startup
+ENTRYPOINT ["tini", "-g", "--"]
+CMD ["start-notebook.sh"]
+
