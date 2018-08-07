@@ -108,11 +108,11 @@ wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.39
 tar -xvf mysql-connector-java-5.1.39.tar.gz 
 ```
 
-### 3.6 You should have Spark 2.3.0 installed, otherwise:
+### 3.6 You should have Spark 2.3.1 installed, otherwise:
 ```bash
-wget http://mirror.yannic-bonenberger.com/apache/spark/spark-2.3.0/spark-2.3.0-bin-hadoop2.7.tgz
-tar -xvf spark-2.3.0-bin-hadoop2.7.tgz
-mv spark-2.3.0-bin-hadoop2.7 spark
+wget http://mirror.netcologne.de/apache.org/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
+tar -xvf spark-2.3.1-bin-hadoop2.7.tgz
+mv spark-2.3.1-bin-hadoop2.7 spark
 ```
 
 ### 3.7 If you are performing the installation on an EC2 instance, you should follow these steps:
@@ -169,13 +169,17 @@ export PATH="$SPARK_HOME/bin:$SPARK_HOME:$PATH"
 export PYSPARK_DRIVER_PYTHON="jupyter"
 export PYSPARK_DRIVER_PYTHON_OPTS="notebook"
 ```
+### 3.10 Install PySpark
+```bash
+pip install pyspark
+```
 
-### 3.10 Clone the Repository
+### 3.11 Clone the Repository
 ```bash
 git clone https://github.com/dvgodoy/DSR-Spark-AppliedML.git
 ```
 
-### 3.11 Run PySpark
+### 3.12 Run PySpark
 ```bash
 cd DSR-Spark-AppliedML
 pyspark
