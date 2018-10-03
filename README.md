@@ -155,7 +155,7 @@ cp spark-defaults.conf.template spark-defaults.conf
 
 Use your favorite text editor to open ```spark-defaults.conf``` and paste these lines:
 ```bash
-spark.jars.packages    com.databricks:spark-xml_2.11:0.4.0,databricks:spark-deep-learning:1.0.0-spark2.3-s_2.11,JohnSnowLabs:spark-nlp:1.5.3
+spark.jars.packages    com.twelvemonkeys.imageio:imageio-core:3.3.2,com.twelvemonkeys.imageio:imageio-jpeg:3.3.2,com.databricks:spark-xml_2.11:0.4.0,databricks:spark-deep-learning:1.0.0-spark2.3-s_2.11,JohnSnowLabs:spark-nlp:1.5.3
 spark.jars	         <FOLDER WHERE YOU UNZIPPED THE CONNECTOR>/mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar
 spark.driver.memory 4g
 ```
