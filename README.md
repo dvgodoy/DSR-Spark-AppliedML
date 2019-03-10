@@ -43,7 +43,7 @@ docker exec -it dsr-spark-appliedml bash
 
 ### 2.1 Click on Launch Instance
 
-### 2.2 Look for the AMI ID ami-060ddc2dc64277fc9 in Community AMIs (Oregon)
+### 2.2 Look for the AMI ID ami-0b78da6ebff9a8fbb in Community AMIs (Oregon)
 
 ### 2.3 When asked for, create a new security group with the following rules:
 - SSH with source Anywhere
